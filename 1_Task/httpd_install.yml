@@ -1,0 +1,29 @@
+- name: Web server setup
+  become: yes
+  hosts: nodes
+  gather_facts: false
+
+  tasks:
+    - name: Httpd install
+      yum: name=httpd state=present
+      
+    - name: Httpd autostart
+      systemd: name=httpd enabled=yes state=started masked=no
+
+    - name: Install firewall
+      yum: name=firewalld state=present
+      
+    - name: Configure firewall autostart
+      systemd: name=firewalld enabled=yes state=started masked=no
+
+    - name: Allow traffic http
+      firewalld:
+        service: http
+        permanent: yes
+        immediate: yes
+        state: enabled
+
+    - name: Create index.html
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
