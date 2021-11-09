@@ -3,7 +3,7 @@ devops-school-ansible
 
 ## 1_Task
 
-*Httpd install.
+* Httpd install.
   httpd_install.yml
 
 
