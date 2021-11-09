@@ -1,0 +1,43 @@
+- name: Grub config
+  become: yes
+  hosts: nodes
+  gather_facts: false
+  vars:
+    grub_file: "/etc/default/grub"
+
+  tasks:
+    - name: Apply 'biosdevname' if not exist
+      lineinfile:
+        path: "{{ grub_file }}"
+        regexp: '^(GRUB_CMDLINE_LINUX="(?:(?!biosdevname).)*?)"$'
+        line: '\1 biosdevname=0"'
+        backrefs: yes
+      register: biosdevname
+
+    - name: Set 'biosdevname' value
+      when: not biosdevname.changed
+      lineinfile:
+        path: "{{ grub_file }}"
+        regexp: '^(GRUB_CMDLINE_LINUX=".*)biosdevname=[^0](.*)"$'
+        line: '\1biosdevname=0\2"'
+        backrefs: yes
+
+    - name: Apply 'net.ifnames' if not exist
+      lineinfile:
+        path: "{{ grub_file }}"
+        regexp: '^(GRUB_CMDLINE_LINUX="(?:(?!net\.ifnames).)*?)"$'
+        line: '\1 net.ifnames=0"'
+        backrefs: yes
+      register: ifnames
+
+    - name: Set 'net.ifnames' value
+      when: not ifnames.changed
+      lineinfile:
+        path: "{{ grub_file }}"
+        regexp: '^(GRUB_CMDLINE_LINUX=".*)net\.ifnames=[^0](.*)"$'
+        line: '\1net.ifnames=0\2"'
+        backrefs: yes
+
+    - name: Generate GRUB configuration file
+      shell:
+        cmd: grub2-mkconfig
