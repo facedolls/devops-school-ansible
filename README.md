@@ -1,5 +1,3 @@
-# devops-school-ansible
-devops-school-ansible
 
 ## 1_Task
 
