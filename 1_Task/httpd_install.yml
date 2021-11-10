@@ -25,5 +25,5 @@
 
     - name: Create index.html
       copy:
-        src: index.html
+        content: "Welcome to my WEB-server!"
         dest: /var/www/html/index.html
