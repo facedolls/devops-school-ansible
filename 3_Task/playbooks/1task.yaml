@@ -1,0 +1,5 @@
+---
+- hosts: nodes
+  roles:
+    - "roles/2task"
+  become: yes

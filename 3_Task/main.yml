@@ -1,0 +1,11 @@
+- name: Using roles to install ftp & web servers.
+  become: yes
+  gather_facts: yes
+  hosts: nodes
+  vars:
+    contact_person: denis_tikhonov1@epam.com
+
+  roles:
+    - role: common
+    - role: ftpserver
+    - role: webserver
