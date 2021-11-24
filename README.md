@@ -21,9 +21,9 @@
 
 ## 3_Task
 
-* Install Apache: ansible-playbook 3_Task/playbooks/3task_apache.yaml
-* Install Vsftpd: ansible-playbook 3_Task/playbooks/3task_ftp.yaml
+* Apache: ansible-playbook 3_Task/playbooks/3task_apache.yaml
+* Vsftpd: ansible-playbook 3_Task/playbooks/3task_ftp.yaml
 
 
 ## 4_Task
-*
+* Awx screenshots
