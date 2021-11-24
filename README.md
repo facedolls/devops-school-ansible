@@ -20,9 +20,9 @@
 
 
 ## 3_Task
-
-* Apache: ansible-playbook 3_Task/playbooks/3task_apache.yaml
-* Vsftpd: ansible-playbook 3_Task/playbooks/3task_ftp.yaml
+          cd 3_Task
+* Apache: ansible-playbook playbooks/3task_apache.yaml
+* Vsftpd: ansible-playbook playbooks/3task_ftp.yaml
 
 
 ## 4_Task
